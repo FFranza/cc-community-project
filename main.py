@@ -1,9 +1,7 @@
 from sklearn.model_selection import train_test_split
 from sklearn.svm import OneClassSVM
-from sklearn.metrics import mean_squared_error, r2_score
 from sklearn.preprocessing import StandardScaler
 import data_collection as dc
-import numpy as np
 import data_preprocessing as dp
 import logging
 
@@ -33,7 +31,6 @@ def main():
                 print("Scaled Data Sample:\n", X_scaled[:5])
 
                 y_pred = model.predict(X_scaled)
-                print(y_pred) # DEBUG
                 
                 anomalies = X[y_pred == -1]  # Points labeled as -1 are considered outliers by DBSCAN
 
@@ -41,8 +38,8 @@ def main():
                 print("Number of Potential Anomalies:", anomalies.shape[0])
 
                 # THIS IS FOR TESTING PURPOSES
-                #print("Preprocessed Features:\n", features)  # Use this to check if features are being extracted
-                #print(df)  # Use this to check if data frames are working
+                print("Preprocessed Features:\n", features)  # Use this to check if features are being extracted
+                print(df)  # Use this to check if data frames are working
 
             else:
                 logging.error("Failed to retrieve player stats for %s on %s", player_name, platform) # Log the error

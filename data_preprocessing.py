@@ -22,16 +22,16 @@ def calculate_level_changes(season_history):
         if isinstance(season_history[start_index], dict) and 'level' in season_history[start_index]: 
             break
         elif start_index == 0: 
-            print("Skipping initial element at index 0 (might not be a dictionary)")
+            print("Skipping initial element at index 0 (might not be a dictionary)") # 
         else:  
             print(f"Skipping non-dictionary element at index {start_index}")
         start_index += 1
 
-    for i in range(start_index + 1, len(season_history)): 
+    for i in range(start_index + 1, len(season_history)): # Iterate over the season history
         if isinstance(season_history[i], dict) and 'level' in season_history[i] and \
-           isinstance(season_history[i-1], dict) and 'level' in season_history[i-1]: 
-            current_level = season_history[i]['level']
-            previous_level = season_history[i-1]['level']
+           isinstance(season_history[i-1], dict) and 'level' in season_history[i-1]:  # Check if both elements are dictionaries
+            current_level = season_history[i]['level'] # Get the current level
+            previous_level = season_history[i-1]['level'] # Get the previous level
             difference = current_level - previous_level
             all_level_changes.append(difference)
 
